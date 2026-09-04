@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantitative Research & Theses | Ing. Tereza Slaninová</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --secondary: #0f172a;
+      --accent: #06b6d4;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #334155;
+      --text-heading: #0f172a;
+      --border: #e2e8f0;
+      --badge-bg: #eff6ff;
+      --badge-text: #1e40af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .header-content {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    header p.subtitle {
+      font-size: 1.15rem;
+      color: #94a3b8;
+      margin-bottom: 20px;
+    }
+
+    .header-links a {
+      display: inline-block;
+      margin: 0 10px;
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .header-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: -30px auto 0;
+      padding: 0 20px;
+    }
+
+    /* Tab Navigation */
+    .tabs {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+      justify-content: center;
+    }
+
+    .tab-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .tab-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Card Layout */
+    .card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      padding: 40px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+      display: none;
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+
+    .card.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .project-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 30px;
+    }
+
+    .badge-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .badge {
+      background: var(--badge-bg);
+      color: var(--badge-text);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge.accent {
+      background: #ecfeff;
+      color: #0e7490;
+    }
+
+    .project-title {
+      font-size: 1.8rem;
+      color: var(--text-heading);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .project-meta {
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    /* Grid Sections */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .card {
+        padding: 24px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+    }
+
+    .section-block {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .section-block h3 {
+      font-size: 1.15rem;
+      color: var(--text-heading);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    ul.feature-list {
+      list-style: none;
+    }
+
+    ul.feature-list li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+
+    ul.feature-list li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: bold;
+      font-size: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    /* Highlights / Stats bar */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      border-radius: 12px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .stat-card .value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+      font-size: 0.85rem;
+      color: #475569;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 30px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: #ffffff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text-heading);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: #f1f5f9;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <h1>Ing. Tereza Slaninová</h1>
+      <p class="subtitle">Data & Business Intelligence Analyst | Quantitative Econometrics & Statistics</p>
+      <div class="header-links">
+        <a href="https://linkedin.com/in/terezaslaninova" target="_blank">LinkedIn Profile</a>
+        <a href="mailto:slaninova.terez@gmail.com">slaninova.terez@gmail.com</a>
+        <a href="https://github.com" target="_blank">GitHub</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Tab Controls -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showProject('masters')">🎓 Master's Thesis (Predictive Econometrics)</button>
+      <button class="tab-btn" onclick="showProject('bachelors')">📊 Bachelor's Thesis (Unsupervised ML)</button>
+    </div>
+
+    <!-- Master's Thesis Card -->
+    <section id="masters" class="card active">
+      <div class="project-header">
+        <div class="badge-container">
+          <span class="badge">Master's Research</span>
+          <span class="badge accent">R Programming</span>
+          <span class="badge">PPML Estimator</span>
+          <span class="badge">Microdata Analysis</span>
+          <span class="badge">Gravity Modeling</span>
+        </div>
+        <h2 class="project-title">Spatial Analysis & Predictive Modeling of Internal Migration in the Czech Republic (1995–2019)</h2>
+        <p class="project-meta">Masaryk University — Faculty of Economics and Administration | Defended / Finalized (2024–2026)</p>
+      </div>
+
+      <!-- Highlight Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="value">25 Years</div>
+          <div class="label">Administrative Microdata (1995–2019)</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">PPML</div>
+          <div class="label">Pseudo-Maximum Likelihood + Fixed Effects</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">2015–2019</div>
+          <div class="label">Ex-Post Validation Window</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="section-block">
+          <h3>📦 Data & Granularity</h3>
+          <ul class="feature-list">
+            <li><strong>Source:</strong> Comprehensive administrative microdata covering individual moves across all municipalities in the Czech Republic.</li>
+            <li><strong>Decomposition:</strong> Disaggregated the general population into distinct <strong>age cohorts</strong> to analyze generational migration sensitivity.</li>
+            <li><strong>Spatial Resistance:</strong> Modeled physical distance, administrative borders (districts/regions), and local proximity as spatial friction factors.</li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>⚙️ Methodology & Modeling</h3>
+          <ul class="feature-list">
+            <li><strong>Structural Gravity Model:</strong> Formulated empirical models to capture bilateral flow dynamics between origin and destination nodes.</li>
+            <li><strong>PPML Estimation:</strong> Employed Poisson Pseudo-Maximum Likelihood with time-specific fixed effects in <strong>R</strong> to handle zero flows and heteroskedasticity.</li>
+            <li><strong>Bias Reduction:</strong> Eliminated aggregation bias by validating micro-level flows against traditional macro-level models.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-block" style="margin-bottom: 24px;">
+        <h3>📈 Key Findings & Outcomes</h3>
+        <ul class="feature-list">
+          <li><strong>Universal Friction vs. Boundary Elasticity:</strong> Physical distance serves as a universal barrier across all cohorts; however, senior cohorts exhibit significantly higher attachment to their home district boundaries.</li>
+          <li><strong>Predictive Accuracy:</strong> Ex-post predictive validation (2015–2019) confirmed that cohort decomposition significantly enhances the capture of high-volume flows.</li>
+          <li><strong>Structural Insights:</strong> Confirmed that while historical relationships reliably predict stable spatial flows, they encounter specific limits during abrupt socio-economic shifts.</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a href="https://is.muni.cz/auth/th/cp3rd/" target="_blank" class="btn">View Thesis Repository →</a>
+      </div>
+    </section>
+
+    <!-- Bachelor's Thesis Card -->
+    <section id="bachelors" class="card">
+      <div class="project-header">
+        <div class="badge-container">
+          <span class="badge">Bachelor's Thesis</span>
+          <span class="badge accent">R System</span>
+          <span class="badge">k-means</span>
+          <span class="badge">Hierarchical Clustering</span>
+          <span class="badge">Spatial Analytics</span>
+        </div>
+        <h2 class="project-title">Cluster Analysis in the R System with Applications in Geography</h2>
+        <p class="project-meta">Masaryk University — Faculty of Science / Economics | 2020–2024</p>
+      </div>
+
+      <!-- Highlight Stats -->
+      <div class="stats-row">
+        <div class="stat-card">
+          <div class="value">Unsupervised ML</div>
+          <div class="label">Pattern Recognition & Segmentation</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">Algorithms</div>
+          <div class="label">k-means, Ward’s Hierarchical, Dendrograms</div>
+        </div>
+        <div class="stat-card">
+          <div class="value">R Stack</div>
+          <div class="label">cluster, factoextra, ggplot2, sp</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="section-block">
+          <h3>📦 Data & Scope</h3>
+          <ul class="feature-list">
+            <li><strong>Scope:</strong> Multidimensional socio-demographic, economic, and regional indicator datasets for the Czech Republic.</li>
+            <li><strong>Feature Engineering:</strong> Data normalization, z-score standardization, outlier detection, and correlation matrix analysis.</li>
+          </ul>
+        </div>
+
+        <div class="section-block">
+          <h3>⚙️ Algorithms & Evaluation</h3>
+          <ul class="feature-list">
+            <li><strong>Partitioning & Hierarchical:</strong> Implemented and compared k-means, medoid partitioning, and agglomerative hierarchical clustering (Ward’s method).</li>
+            <li><strong>Validation Metrics:</strong> Utilized Elbow method, Silhouette coefficients, and Cophenetic correlation to determine optimal cluster counts ($k$).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section-block" style="margin-bottom: 24px;">
+        <h3>📈 Key Outcomes</h3>
+        <ul class="feature-list">
+          <li>Identified discrete regional clusters reflecting socio-economic disparities and spatial cohesion without prior class labels.</li>
+          <li>Delivered a reproducible R script framework for automated clustering and spatial visualization of municipal data.</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a href="https://is.muni.cz/auth/th/cb7hr/Tereza_Slaninova_BP1.pdf" target="_blank" class="btn">Download Bachelor's Thesis (PDF) →</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Ing. Tereza Slaninová — Built with clean HTML/CSS</p>
+  </footer>
+
+  <script>
+    function showProject(id) {
+      // Hide all cards
+      document.querySelectorAll('.card').forEach(card => card.classList.remove('active'));
+      // Deactivate all buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
+      // Activate selected
+      document.getElementById(id).classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>
